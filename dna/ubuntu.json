@@ -1,0 +1,28 @@
+{
+  "remote": "ssh {$REMOTE}",
+  "setup-vps": [
+    "useradd -d /home/node -m node -s /bin/bash",
+    "passwd node && adduser node sudo",
+    "echo \"LC_ALL=en_US.UTF-8\" >> /etc/environment",
+    "echo \"LANG=en_US.UTF-8\" >> /etc/environment",
+    "apt-get update",
+    "apt-get -y install git-core g++ curl libssl-dev apache2-utils make"
+  ],
+  "setup-node-env": [
+    "git clone git://github.com/creationix/nvm.git ~/.nvm",
+    ". ~/.nvm/nvm.sh",
+    "nvm install v4.2.3"
+  ],
+  "setup-mongodb": [
+    "apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927",
+    "echo \"deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse\" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list",
+    "apt-get update",
+    "apt-get install -y mongodb-org",
+    "service mongod start"
+  ],
+  "setup-pm2": [
+    ". ~/.nvm/nvm.sh",
+    "nvm use v4.2.3",
+    "npm install pm2 -g"
+  ]
+}
