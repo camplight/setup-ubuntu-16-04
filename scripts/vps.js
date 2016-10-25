@@ -3,7 +3,9 @@ module.exports = function (angel) {
   var format = require('string-template')
   angel.on('vps :remote setup', function (angel) {
     sequence([
+      format('ssh-copy-id root@{remote}', angel.cmdData),
       format('REMOTE=root@{remote} angel cell setup-vps ubuntu', angel.cmdData),
+      format('ssh-copy-id node@{remote}', angel.cmdData),
       format('REMOTE=node@{remote} angel cell setup-node-env ubuntu', angel.cmdData)
     ])
   })

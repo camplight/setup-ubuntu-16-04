@@ -1,5 +1,10 @@
 # setup ubuntu 16.04
 
+## prerequirements
+
+* a VPS instance with ssh root access
+* **optionally** organic-angel installed globally, otherwise instead of `angel` use `node ./node_modules/.bin/angel` commands bellow
+
 ## setup
 
 ```
